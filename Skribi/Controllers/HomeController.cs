@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Skribi.Models;
+using Skribi.ViewModels;
 
 namespace Skribi.Controllers
 {
@@ -14,8 +15,12 @@ namespace Skribi.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var rooms = await _context.Rooms.ToListAsync();
-            return View(rooms);
+            HomeViewModel model = new HomeViewModel
+            {
+                Rooms = await _context.Rooms.ToListAsync()
+            };
+
+            return View(model);
         }
     }
 }

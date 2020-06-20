@@ -1,8 +1,9 @@
-using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Skribi.Models;
+using Skribi.ViewModels;
 
 namespace Skribi.Controllers
 {
@@ -15,12 +16,17 @@ namespace Skribi.Controllers
 
         public async Task<IActionResult> Index(int id)
         {
-            Room room = await _context.Rooms.FindAsync(id);
-            List<Thread> threads = await _context.Threads.Include(thread => thread.User).ToListAsync();
+            RoomViewModel model = new RoomViewModel
+            {
+                Room = await _context.Rooms.FindAsync(id),
+                Threads = await _context.Threads
+                    .Where(t => t.RoomId == id)
+                    .OrderByDescending(t => t.CreatedAt)
+                    .Include(t => t.User)
+                    .ToListAsync()
+            };
 
-            ViewData["RoomName"] = room.Title;
-
-            return View(threads);
+            return View(model);
         }
     }
 }
