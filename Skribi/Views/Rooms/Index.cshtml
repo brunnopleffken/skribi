@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Skribi.Models.Thread>
+@{
+    ViewData["Title"] = ViewData["RoomName"];
+}
+
+<ul class="list-group">
+    @foreach (var thread in Model)
+    {
+        <li class="list-group-item">
+            <div class="row align-items-center">
+                <div class="col-auto">X</div>
+                <div class="col">
+                    <a asp-controller="Threads" asp-action="Read" asp-route-id="@thread.Id" class="font-weight-bold">@thread.Title</a>
+                    <p class="small text-muted mb-0">Started by @thread.User.Username at @thread.CreatedAt</p>
+                </div>
+                <div class="col-auto text-center">
+                    <p class="font-weight-bold h5 mb-0">13</p>
+                    <span class="small d-block">replies</span>
+                </div>
+            </div>
+        </li>
+    }
+</ul>
