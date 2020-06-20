@@ -5,5 +5,15 @@
 
 <div class="text-center">
     <h1 class="display-4">Skribi</h1>
-    <p>The definitive ASP.NET Core open-source forum software.</p>
+    <p>Just testing a forum software written in ASP.NET Core 3.</p>
 </div>
+
+@foreach (var room in Model)
+{
+    <div class="card">
+        <div class="card-body">
+            <a asp-controller="Rooms" asp-action="Home" asp-route-id="@room.Id" class="h5 font-weight-bold">@room.Title</a>
+            <p class="mb-0">@room.Description</p>
+        </div>
+    </div>
+}
