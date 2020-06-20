@@ -25,10 +25,5 @@ namespace Skribi.Controllers
             var rooms = await _context.Rooms.ToListAsync();
             return View(rooms);
         }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
     }
 }
