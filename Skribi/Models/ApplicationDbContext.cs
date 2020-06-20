@@ -8,6 +8,7 @@ namespace Skribi.Models
     {
         public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
+        public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
         public virtual DbSet<Thread> Threads { get; set; }
         public virtual DbSet<User> Users { get; set; }
