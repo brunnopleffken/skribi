@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Skribi.Models;
@@ -17,7 +18,9 @@ namespace Skribi.Controllers
         {
             HomeViewModel model = new HomeViewModel
             {
-                Rooms = await _context.Rooms.ToListAsync()
+                Rooms = await _context.Rooms
+                    .OrderBy(r => r.Position)
+                    .ToListAsync()
             };
 
             return View(model);
