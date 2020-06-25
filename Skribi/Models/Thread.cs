@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Skribi.Models
 {
@@ -18,5 +19,6 @@ namespace Skribi.Models
         public DateTime? UpdatedAt { get; set; }
         public bool IsLocked { get; set; }
 
+        public List<Reply> Replies { get; set; }
     }
 }
