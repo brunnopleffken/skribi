@@ -1,0 +1,25 @@
+﻿@model Skribi.ViewModels.ThreadViewModel
+@{
+    ViewData["Title"] = Model.Thread.Title;
+}
+
+<div class="row mb-4">
+    <div class="col">
+        <p class="small text-muted mb-0">@Model.Thread.Room.Title</p>
+        <p class="h3">@Model.Thread.Title</p>
+    </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-auto"><img src="http://placehold.it/64x64" class="rounded"></div>
+    <div class="col">
+        <div class="font-weight-bold">@Model.Thread.User.Username</div>
+        <div class="text-muted">@Model.Thread.User.MemberSince</div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        @Html.Raw(Model.Thread.Content)
+    </div>
+</div>
