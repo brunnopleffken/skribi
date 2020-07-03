@@ -6,7 +6,7 @@ namespace Skribi.Models
 {
     public class ApplicationDbContext : DbContext
     {
-        public static readonly ILoggerFactory MyLoggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
+        private static readonly ILoggerFactory loggerFactory = LoggerFactory.Create(builder => { builder.AddConsole(); });
 
         public virtual DbSet<Reply> Replies { get; set; }
         public virtual DbSet<Room> Rooms { get; set; }
@@ -18,7 +18,7 @@ namespace Skribi.Models
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-            => optionsBuilder.UseLoggerFactory(MyLoggerFactory);
+            => optionsBuilder.UseLoggerFactory(loggerFactory);
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
