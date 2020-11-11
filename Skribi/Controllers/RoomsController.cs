@@ -19,10 +19,11 @@ namespace Skribi.Controllers
             RoomViewModel model = new RoomViewModel
             {
                 Room = await _context.Rooms.FindAsync(id),
+
                 Threads = await _context.Threads
+                    .Include(t => t.User)
                     .Where(t => t.RoomId == id)
                     .OrderByDescending(t => t.CreatedAt)
-                    .Include(t => t.User)
                     .ToListAsync()
             };
 
